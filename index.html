@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>SprintPilot: Run Your Sprint in CoPilot Mode</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: linear-gradient(120deg, #0f2027 0%, #2c5364 80%, #1488cc 100%);
+      color: #f9fafb;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 56px 20px 120px 20px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+    .logo, .sprint-icons {
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      align-items: center;
+    }
+    .logo img {
+      width: 80px;
+      height: 80px;
+      animation: bounceIn 1.2s cubic-bezier(.23,1,.32,1) backwards;
+      background: #fff;
+      border-radius: 50%;
+      box-shadow: 0 4px 18px #1488cc33;
+      border: 2px solid #1488cc66;
+    }
+    .sprint-icon {
+      width: 54px;
+      height: 54px;
+      animation: iconEntry 1.4s cubic-bezier(.23,1,.32,1) backwards;
+      filter: drop-shadow(0 2px 8px #1488cc88);
+    }
+    .sprint-icon:nth-child(1) { animation-delay: 0.3s; }
+    .sprint-icon:nth-child(2) { animation-delay: 0.5s; }
+    .sprint-icon:nth-child(3) { animation-delay: 0.7s; }
+    @keyframes bounceIn {
+      0% { transform: scale(0.5) translateY(-50px); opacity: 0; }
+      60% { transform: scale(1.1) translateY(16px); opacity: 1; }
+      100% { transform: scale(1) translateY(0); }
+    }
+    @keyframes iconEntry {
+      0% { opacity: 0; transform: translateY(40px) scale(0.7);}
+      80% { opacity: 0.7; transform: translateY(-10px) scale(1.08);}
+      100% { opacity: 1; transform: translateY(0) scale(1);}
+    }
+    h1 {
+      font-size: 2.7rem;
+      margin-bottom: 10px;
+      animation: fadeInUp 1s cubic-bezier(.23,1,.32,1) 0.2s backwards;
+      letter-spacing: 1px;
+      color: #1488cc;
+      text-shadow: 0 2px 16px #f9fafb44;
+    }
+    .tagline {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 34px;
+      animation: fadeInUp 1.1s cubic-bezier(.23,1,.32,1) 0.3s backwards;
+      color: #f9fafb;
+      text-shadow: 0 2px 8px #1488cc38;
+    }
+    @keyframes fadeInUp {
+      0% { opacity: 0; transform: translateY(40px);}
+      100% { opacity: 1; transform: translateY(0);}
+    }
+    p {
+      font-size: 1.15rem;
+      margin-bottom: 33px;
+      line-height: 1.6;
+      animation: fadeInUp 1s cubic-bezier(.23,1,.32,1) 0.4s backwards;
+      color: #dbe7f5;
+    }
+    .btn {
+      background: linear-gradient(90deg, #1488cc 0%, #2c5364 100%);
+      color: #fff;
+      padding: 14px 34px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1.08rem;
+      font-weight: bold;
+      box-shadow: 0 4px 16px #1488cc55;
+      cursor: pointer;
+      transition: background 0.22s, color 0.22s, transform 0.22s;
+      animation: fadeInUp 1s cubic-bezier(.23,1,.32,1) 0.7s backwards;
+      margin-bottom: 42px;
+      margin-top: 8px;
+      display: inline-block;
+    }
+    .btn:hover {
+      background: linear-gradient(90deg, #2c5364 0%, #1488cc 100%);
+      color: #b6defa;
+      transform: scale(1.07);
+    }
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 26px;
+      margin-top: 28px;
+      animation: fadeInUp 1s cubic-bezier(.23,1,.32,1) 1.1s backwards;
+    }
+    .feature-card {
+      background: linear-gradient(120deg, #173b6c 0%, #1488cc 100%);
+      border-radius: 18px;
+      padding: 22px 16px;
+      min-width: 200px;
+      flex: 1;
+      max-width: 240px;
+      box-shadow: 0 2px 18px #1488cc33;
+      font-size: 1.06rem;
+      color: #e9f5fe;
+      transition: transform 0.18s, background 0.18s;
+      font-weight: 500;
+      border: 1.5px solid #0f2027;
+    }
+    .feature-card strong {
+      color: #b6defa;
+      font-size: 1.09em;
+    }
+    .feature-card:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 10px 25px #1488cc44;
+      background: linear-gradient(120deg, #1488cc 0%, #173b6c 100%);
+      color: #b6defa;
+      border: 1.5px solid #1488cc;
+    }
+    .section {
+      text-align: left;
+      margin: 0 auto 32px auto;
+      max-width: 800px;
+      background: linear-gradient(90deg, #f9fafb10 0%, #1488cc11 100%);
+      border-radius: 18px;
+      padding: 20px 14px;
+      box-shadow: 0 2px 15px #1488cc19;
+      animation: fadeInUp 1s cubic-bezier(.23,1,.32,1) 1.3s backwards;
+      color: #e3eefa;
+      border-left: 5px solid #1488cc;
+    }
+    .section pre, .section code {
+      background: #173b6c33;
+      padding: 8px 10px;
+      border-radius: 6px;
+      font-size: 1em;
+      color: #b6defa;
+      overflow-x: auto;
+      margin: 13px 0;
+    }
+    .section h2 {
+      color: #1488cc;
+      margin-bottom: 8px;
+      font-size: 1.15rem;
+    }
+    .waves {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 210px;
+      z-index: 1;
+      pointer-events: none;
+      overflow: hidden;
+    }
+    .waves svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+      animation: waveMove 16s linear infinite;
+    }
+    @keyframes waveMove {
+      0% { transform: translateX(0);}
+      100% { transform: translateX(-60px);}
+    }
+    @media (max-width: 700px) {
+      .features { flex-direction: column; align-items: center; }
+      h1 { font-size: 2rem; }
+      .container { padding: 26px 6px 70px 6px; }
+      .section { padding: 10px 6px; }
+      .logo, .sprint-icons { gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <img src="https://raw.githubusercontent.com/desing_microsoft/SprintPilot/main/logo.png" alt="SprintPilot Logo" onerror="this.style.display='none'">
+    </div>
+    <div class="sprint-icons">
+      <!-- Runner icon -->
+      <svg class="sprint-icon" viewBox="0 0 64 64" fill="none">
+        <circle cx="32" cy="32" r="29" fill="#b6defa" stroke="#1488cc" stroke-width="2"/>
+        <path d="M26 41q7-3 12-6.5t7-8.5" stroke="#1488cc" stroke-width="2" fill="none"/>
+        <circle cx="21" cy="23" r="5" fill="#1488cc" stroke="#b6defa" stroke-width="2"/>
+        <rect x="26" y="29" width="18" height="6" rx="3" fill="#2c5364"/>
+        <rect x="31" y="38" width="6" height="12" rx="3" fill="#0f2027"/>
+      </svg>
+      <!-- Stopwatch icon -->
+      <svg class="sprint-icon" viewBox="0 0 64 64" fill="none">
+        <circle cx="32" cy="32" r="23" fill="#173b6c" stroke="#b6defa" stroke-width="3"/>
+        <rect x="28" y="12" width="8" height="8" rx="4" fill="#1488cc"/>
+        <rect x="31" y="20" width="2" height="15" rx="1" fill="#b6defa"/>
+        <circle cx="32" cy="32" r="11" stroke="#b6defa" stroke-width="2"/>
+      </svg>
+      <!-- Finish flag icon -->
+      <svg class="sprint-icon" viewBox="0 0 64 64" fill="none">
+        <rect x="10" y="8" width="6" height="48" rx="3" fill="#1488cc"/>
+        <path d="M14 12q9-6 20 0t16 0v10q-9 6-20 0t-16 0z" fill="#b6defa"/>
+        <path d="M14 22q9-6 20 0t16 0v10q-9 6-20 0t-16 0z" fill="#173b6c"/>
+      </svg>
+    </div>
+    <h1>SprintPilot</h1>
+    <div class="tagline">Run Your Sprint in CoPilot Mode</div>
+    <p>
+      <strong>Automate Scrum Master Tasks. Save Sprint Teams Hours on Planning.</strong><br>
+      SprintPilot is your intelligent companion for sprint planning, risk analysis, and end-of-sprint management.<br>
+      Free up your Scrum Masters and development teams to focus on delivery by automating tedious sprint management tasks.
+      <br>
+      <a class="btn" href="https://github.com/desing_microsoft/SprintPilot" target="_blank">View on GitHub</a>
+    </p>
+    <div class="features">
+      <div class="feature-card">
+        <strong>CoPilot for Sprint Planning</strong><br>
+        Automatically organize stories, features, and tasks for your next sprint.
+      </div>
+      <div class="feature-card">
+        <strong>Scrum Master Time Saver</strong><br>
+        Automate hygiene tasks: move, split, and close User Stories with a click.
+      </div>
+      <div class="feature-card">
+        <strong>Risk Analysis & Reporting</strong><br>
+        Custom scoring system highlights at-risk work items.
+      </div>
+      <div class="feature-card">
+        <strong>Multi-Format Reports & Email</strong><br>
+        HTML, JSON, console table, and Outlook email (Windows only).
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Quick Start</h2>
+      <strong>Prerequisites:</strong>
+      <ul>
+        <li>Node.js 18+</li>
+        <li>Azure Developer CLI (<code>azd</code>)</li>
+        <li>Access to Azure DevOps org/project</li>
+        <li>Windows + Outlook for email features</li>
+      </ul>
+      <strong>Install & Configure:</strong>
+      <pre>git clone https://github.com/desing_microsoft/SprintPilot
+cd SprintPilot
+npm install
+azd auth login
+# Edit <code>config.js</code> as needed</pre>
+    </div>
+
+    <div class="section">
+      <h2>Automate Planning & Hygiene Tasks</h2>
+      <ul>
+        <li>Detects current and next sprint for your team</li>
+        <li>Filters, moves, closes, and splits User Stories automatically</li>
+        <li>Writes structured JSON logs of sprint actions</li>
+        <li>Supports non-interactive automation for hands-free operation</li>
+      </ul>
+      <pre>
+npm run manage-stories        # End-of-sprint story hygiene
+      </pre>
+    </div>
+
+    <div class="section">
+      <h2>Risk Scoring Methodology</h2>
+      <p>
+        Priority, Age, Sprint Moves, Split Count, Risk Field, Target Date, Story Points, and Urgency are all weighted to compute risk.<br>
+        Final risk level: <strong>Critical, High, Medium, Low, Minimal</strong>
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Copilot Chat & MCP Integration</h2>
+      <p>
+        Plan and manage sprints interactively via Azure DevOps MCP and GitHub Copilot Chat.<br>
+        Configure <code>.vscode/mcp.json</code> and ask Copilot Chat to run SprintPilot commands for you.
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Contributing</h2>
+      <p>
+        Contributions are welcome! Submit a Pull Request on GitHub.
+      </p>
+    </div>
+  </div>
+  <div class="waves">
+    <svg viewBox="0 0 1200 220" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill="#1488cc" fill-opacity="0.18" d="M0,160 C300,260 900,60 1200,160 V220 H0 V160 Z"></path>
+      <path fill="#b6defa" fill-opacity="0.09" d="M0,180 C350,100 850,300 1200,180 V220 H0 V180 Z"></path>
+      <path fill="#173b6c" fill-opacity="0.09" d="M0,200 C380,170 900,320 1200,200 V220 H0 V200 Z"></path>
+    </svg>
+  </div>
+</body>
+</html>
