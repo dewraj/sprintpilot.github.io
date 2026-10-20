@@ -344,15 +344,30 @@
     </div>
 
     <div class="section">
-      <h2>Advanced: Command-Line Tools</h2>
+      <h2>Access Features from the Dashboard</h2>
       <p style="margin:0 0 10px 0">
-        For automation and power users, run reports directly:
+        Launch Sprint Pilot, select your team and sprint, then use the dashboard
+        to access each feature. No report commands are needed.
       </p>
-      <pre><code>npm run sprint-report          # Sprint summary
-npm run sprint-report-full     # Full sprint summary
-npm run risk-report            # Risk analysis
-npm run manage-stories         # End-of-sprint automation</code></pre>
-      <div class="muted">See <code>package.json</code> for all available commands and team-specific variants.</div>
+      <ul>
+        <li><strong>Sprint Summary Reports:</strong> choose a planning or closure report,
+          generate it, then preview, edit, and share it by email.</li>
+        <li><strong>Sprint Hygiene:</strong> open the Sprint Hygiene tab and select
+          <strong>Analyze sprint</strong>. Review the proposed changes, select the approval
+          checkbox, then choose <strong>Apply reviewed changes</strong>.</li>
+        <li><strong>Story Creation:</strong> open the Story Creation tab, paste meeting
+          notes or choose <strong>From feature ID</strong>, then generate drafts.
+          Review and edit the stories before approving creation.</li>
+        <li><strong>Feature Mapping:</strong> open
+          <strong>Story Creation &gt; Map existing stories</strong>, load the sprint stories,
+          and review or change suggested parent Features. Confirm and save the mappings
+          you want to apply.</li>
+        <li><strong>Productivity Report:</strong> open the Productivity tab, choose
+          <strong>Basic report - no LLM</strong> or <strong>AI-assisted report</strong>,
+          set the review options, and generate the report.</li>
+      </ul>
+      <div class="muted">Analysis, suggestions, and drafts do not update Azure DevOps.
+        Work-item changes require your explicit approval.</div>
     </div>
 
     <div class="section">
